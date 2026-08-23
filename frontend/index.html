@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrafficSense AI | Traffic Prediction</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- AMBIENT BACKGROUND -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">🚦</span>
+            <span>Traffic<span class="green">Sense</span> AI</span>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            ML MODEL ONLINE
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="sticker-field" aria-hidden="true">
+                <span class="sticker sticker-green float-a">
+                    <span class="sticker-emoji">🟢</span> GO
+                </span>
+                <span class="sticker sticker-amber float-b">
+                    <span class="sticker-emoji">🚗</span> VROOM
+                </span>
+                <span class="sticker sticker-red float-c">
+                    <span class="sticker-emoji">🚦</span> LIVE
+                </span>
+                <span class="sticker sticker-cyan float-d">
+                    <span class="sticker-emoji">🤖</span> AI-POWERED
+                </span>
+                <span class="sticker sticker-purple float-e">
+                    <span class="sticker-emoji">📊</span> ML MODEL
+                </span>
+            </div>
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    <span>⚡</span>
+                    AI-POWERED TRAFFIC PREDICTION
+                </div>
+
+                <h1>
+                    Predict Traffic
+                    <span>Before It Happens.</span>
+                </h1>
+
+                <p>
+                    Punch in the time, day and a quick vehicle count — our model reads the road
+                    and tells you what's coming: smooth sailing or bumper to bumper.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PREDICTION SECTION -->
+        <section class="prediction-container">
+
+            <!-- INPUT CARD -->
+            <div class="card input-card">
+                <span class="peel-corner"></span>
+
+                <div class="card-header">
+
+                    <div>
+                        <p class="section-label">INPUT PARAMETERS</p>
+                        <h2>Traffic Information</h2>
+                    </div>
+
+                    <div class="card-icon">
+                        📊
+                    </div>
+
+                </div>
+
+
+                <form id="predictionForm">
+
+                    <div class="input-grid">
+
+                        <div class="input-group">
+                            <label>Date</label>
+
+                            <input
+                                type="number"
+                                id="date"
+                                min="1"
+                                max="31"
+                                value="15"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Hour</label>
+
+                            <input
+                                type="number"
+                                id="hour"
+                                min="0"
+                                max="23"
+                                value="8"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="input-group">
+                            <label>Minute</label>
+
+                            <select id="minute">
+
+                                <option value="0">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>Day of Week</label>
+
+                            <select id="day_of_week">
+
+                                <option value="0">Monday</option>
+                                <option value="1">Tuesday</option>
+                                <option value="2">Wednesday</option>
+                                <option value="3">Thursday</option>
+                                <option value="4">Friday</option>
+                                <option value="5">Saturday</option>
+                                <option value="6">Sunday</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>🚗 Cars</label>
+
+                            <input
+                                type="number"
+                                id="car_count"
+                                min="0"
+                                value="120"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>🏍️ Bikes</label>
+
+                            <input
+                                type="number"
+                                id="bike_count"
+                                min="0"
+                                value="30"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>🚌 Buses</label>
+
+                            <input
+                                type="number"
+                                id="bus_count"
+                                min="0"
+                                value="20"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>🚚 Trucks</label>
+
+                            <input
+                                type="number"
+                                id="truck_count"
+                                min="0"
+                                value="25"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RUSH HOUR -->
+
+                    <div class="rush-hour">
+
+                        <div>
+
+                            <span class="rush-title">
+                                ⏰ Rush Hour
+                            </span>
+
+                            <span class="rush-description">
+                                Is this a peak traffic period?
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="rush_hour"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-display">
+
+                        <span>Total Vehicles</span>
+
+                        <strong id="totalVehicles">195</strong>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="predict-button"
+                        id="predictButton"
+                    >
+
+                        <span>🚦</span>
+
+                        <span id="buttonText">
+                            Predict Traffic
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- RESULT CARD -->
+
+            <div class="card result-card">
+                <span class="peel-corner"></span>
+
+                <div class="card-header">
+
+                    <div>
+                        <p class="section-label">AI PREDICTION</p>
+                        <h2>Traffic Status</h2>
+                    </div>
+
+                    <div class="ai-icon">
+                        ✨
+                    </div>
+
+                </div>
+
+
+                <!-- INITIAL STATE -->
+
+                <div
+                    class="result-placeholder"
+                    id="placeholder"
+                >
+
+                    <div class="traffic-animation">
+
+                        <div class="road">
+
+                            <div class="road-line"></div>
+                            <div class="road-line"></div>
+
+                        </div>
+
+                        <div class="car">
+                            🚗
+                        </div>
+
+                        <div class="signal-light signal-red"></div>
+                        <div class="signal-light signal-amber"></div>
+                        <div class="signal-light signal-green"></div>
+
+                    </div>
+
+                    <h3>Waiting for prediction</h3>
+
+                    <p>
+                        Enter traffic information and click
+                        <strong>Predict Traffic</strong>.
+                    </p>
+
+                </div>
+
+
+                <!-- RESULT -->
+
+                <div
+                    class="result-content hidden"
+                    id="resultContent"
+                >
+
+                    <div class="traffic-status">
+
+                        <div
+                            class="status-circle"
+                            id="statusCircle"
+                        >
+                            🚦
+                        </div>
+
+                        <p>Predicted Traffic</p>
+
+                        <h3 id="predictionResult">
+                            Heavy
+                        </h3>
+
+                    </div>
+
+
+                    <!-- CONFIDENCE -->
+
+                    <div class="confidence-section">
+
+                        <div class="confidence-header">
+
+                            <span>Model Confidence</span>
+
+                            <strong id="confidenceValue">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="confidence-bar">
+
+                            <div
+                                class="confidence-fill"
+                                id="confidenceFill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROBABILITIES -->
+
+                    <div class="probabilities">
+
+                        <h3>Prediction Probability</h3>
+
+
+                        <div class="probability-row">
+
+                            <span>
+                                <i class="dot low"></i>
+                                Low
+                            </span>
+
+                            <strong id="lowProbability">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="probability-bar">
+
+                            <div
+                                id="lowBar"
+                                class="probability-fill fill-low"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="probability-row">
+
+                            <span>
+                                <i class="dot normal"></i>
+                                Normal
+                            </span>
+
+                            <strong id="normalProbability">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="probability-bar">
+
+                            <div
+                                id="normalBar"
+                                class="probability-fill fill-normal"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="probability-row">
+
+                            <span>
+                                <i class="dot high"></i>
+                                High
+                            </span>
+
+                            <strong id="highProbability">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="probability-bar">
+
+                            <div
+                                id="highBar"
+                                class="probability-fill fill-high"
+                            ></div>
+
+                        </div>
+
+
+                        <div class="probability-row">
+
+                            <span>
+                                <i class="dot heavy"></i>
+                                Heavy
+                            </span>
+
+                            <strong id="heavyProbability">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="probability-bar">
+
+                            <div
+                                id="heavyBar"
+                                class="probability-fill fill-heavy"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="result-total">
+
+                        <span>Vehicles Analyzed</span>
+
+                        <strong id="resultTotal">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+
+        <section class="features">
+
+            <div class="feature">
+                <span class="feature-sticker sticker-green">🤖</span>
+                <h3>Machine Learning</h3>
+
+                <p>
+                    Powered by a trained classification model.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+                <span class="feature-sticker sticker-amber">⚡</span>
+                <h3>Instant Prediction</h3>
+
+                <p>
+                    Get traffic predictions in milliseconds.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+                <span class="feature-sticker sticker-cyan">📈</span>
+                <h3>Probability Analysis</h3>
+
+                <p>
+                    See the probability of every traffic class.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEVELOPER -->
+
+        <section class="developer">
+
+            <p class="section-label">
+                DEVELOPED BY
+            </p>
+
+            <h2>Pritwish Saha</h2>
+
+            <p>
+                B.Tech CSE (AI & ML) • Machine Learning Project
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
